@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { AddFriendModal } from "./AddFriendModal";
 import { AddBlacklistModal } from "./AddBlacklistModal";
+import { LoadingScreen } from "./LoadingScreen";
 import { donate, getBlacklist, getFriendlist } from "../ccn/contract_interact";
 import { toast, ToastContainer } from "react-toastify";
 
 export const MainScreen = ({ aleerumProvider }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [addFriendModalVisible, setAddFriendModalVisible] = useState(false);
   const [addBlacklistModalVisible, setAddBlacklistModalVisible] =
     useState(false);
@@ -12,11 +14,14 @@ export const MainScreen = ({ aleerumProvider }) => {
   const [blacklist, setBlacklist] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true);
     const getInitialData = async () => {
       setFriendList(await getFriendlist());
       setBlacklist(await getBlacklist());
     };
-    getInitialData();
+    getInitialData().then(() => {
+      setIsLoading(false);
+    });
 
     return () => {
       setFriendList([]);
@@ -24,18 +29,9 @@ export const MainScreen = ({ aleerumProvider }) => {
     };
   }, []);
 
-  const fakeFriendsList = [
-    "0x12",
-    "0x13",
-    "0x14",
-    "0x15",
-    "0x16",
-    "0x17",
-    "0x18",
-    "0x19",
-    "0x20",
-  ];
-  const fakeBlacklistList = ["0x00000000"];
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div className="flex min-h-screen flex-col justify-center space-y-10">
@@ -70,7 +66,7 @@ export const MainScreen = ({ aleerumProvider }) => {
       <div className="flex flex-row justify-evenly">
         <div className="rounded-xl bg-gray-300 p-5 shadow-lg">
           <div className="flex flex-row">
-            <p>Your friends:</p>
+            <p>Your friends ({friendlist.length}):</p>
             <button
               className="flex h-5 w-5 items-center justify-center rounded-full bg-green-400 text-center"
               onClick={() => setAddFriendModalVisible(true)}
@@ -78,13 +74,11 @@ export const MainScreen = ({ aleerumProvider }) => {
               +
             </button>
           </div>
-          {friendlist.map((item, idx) => (
-            <p key={idx}>{item}</p>
-          ))}
+          {friendlist && friendlist.map((item, idx) => <p key={idx}>{item}</p>)}
         </div>
         <div className="rounded-xl bg-gray-300 p-5 shadow-lg">
           <div className="flex flex-row">
-            <p>Addresses you've blacklisted:</p>
+            <p>Addresses you've blacklisted ({blacklist.length}):</p>
             <button
               className="flex h-5 w-5 items-center justify-center rounded-full bg-green-400 text-center"
               onClick={() => setAddBlacklistModalVisible(true)}
@@ -92,9 +86,7 @@ export const MainScreen = ({ aleerumProvider }) => {
               +
             </button>
           </div>
-          {blacklist.map((item, idx) => (
-            <p key={idx}>{item}</p>
-          ))}
+          {blacklist && blacklist.map((item, idx) => <p key={idx}>{item}</p>)}
         </div>
       </div>
       <AddFriendModal
