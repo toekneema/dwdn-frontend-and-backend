@@ -28,7 +28,7 @@ export const AddBlacklistModal = ({ ...props }) => {
         </button>
         <button
           onClick={async () => {
-            addToBlacklist(addressInput);
+            addToBlacklist(props.account, addressInput);
             props.setAddBlacklistModalVisible(false);
           }}
           className="m-2 rounded-full bg-blue-600 py-2 px-4 text-white"

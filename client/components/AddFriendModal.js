@@ -27,7 +27,7 @@ export const AddFriendModal = ({ ...props }) => {
         </button>
         <button
           onClick={async () => {
-            addToFriendlist(addressInput);
+            addToFriendlist(props.account, addressInput);
             props.setAddFriendModalVisible(false);
           }}
           className="m-2 rounded-full bg-blue-600 py-2 px-4 text-white"

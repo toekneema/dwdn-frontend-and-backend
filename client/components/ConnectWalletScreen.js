@@ -1,10 +1,10 @@
-import React from 'react'
-import { useContext } from 'react'
+import React from "react";
+import { useContext } from "react";
 
 export const ConnectWalletScreen = () => {
   const connectWallet = () => {
-    window['aleereum'] && window['aleereum'].connect()
-  }
+    window["aleereum"] && window["aleereum"].connect();
+  };
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -27,5 +27,5 @@ export const ConnectWalletScreen = () => {
         </div>
       </main>
     </div>
-  )
-}
+  );
+};

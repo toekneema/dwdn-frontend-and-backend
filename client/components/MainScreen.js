@@ -2,22 +2,29 @@ import React, { useEffect, useState } from "react";
 import { AddFriendModal } from "./AddFriendModal";
 import { AddBlacklistModal } from "./AddBlacklistModal";
 import { LoadingScreen } from "./LoadingScreen";
-import { donate, getBlacklist, getFriendlist } from "../ccn/contract_interact";
+import {
+  donate,
+  getBlacklist,
+  getFriendlist,
+  getBalance,
+} from "../ccn/contract_interact";
 import { toast, ToastContainer } from "react-toastify";
 
-export const MainScreen = ({ aleerumProvider }) => {
+export const MainScreen = ({ account, isConnected, isLocked }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [addFriendModalVisible, setAddFriendModalVisible] = useState(false);
   const [addBlacklistModalVisible, setAddBlacklistModalVisible] =
     useState(false);
+  const [balance, setBalance] = useState(null);
   const [friendlist, setFriendList] = useState([]);
   const [blacklist, setBlacklist] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
     const getInitialData = async () => {
-      setFriendList(await getFriendlist());
-      setBlacklist(await getBlacklist());
+      setBalance(await getBalance(account));
+      setFriendList(await getFriendlist(account));
+      setBlacklist(await getBlacklist(account));
     };
     getInitialData().then(() => {
       setIsLoading(false);
@@ -27,7 +34,7 @@ export const MainScreen = ({ aleerumProvider }) => {
       setFriendList([]);
       setBlacklist([]);
     };
-  }, []);
+  }, [account]);
 
   if (isLoading) {
     return <LoadingScreen />;
@@ -35,7 +42,7 @@ export const MainScreen = ({ aleerumProvider }) => {
 
   return (
     <div className="flex min-h-screen flex-col justify-center space-y-10">
-      <h1 className="text-center text-5xl">
+      <h1 className="text-center text-5xl text-blue-700 font-semibold">
         Decentralized Wealth Distribution Network
       </h1>
       <div className="flex flex-col items-center justify-evenly space-y-6">
@@ -43,18 +50,15 @@ export const MainScreen = ({ aleerumProvider }) => {
           <div className="px-6 py-4">
             <div className="mb-2 text-xl font-bold">Your Profile</div>
             <p className="text-base text-gray-700">
-              {/* Address: <span>{aleerumProvider.account}</span> */}
-              Address: <span>0x444</span>
+              Address: <span>{account}</span>
             </p>
             <p className="text-base text-gray-700">
-              Balance: <span>5.6 CCN</span>
+              Balance: <span>{balance} CCN</span>
             </p>
           </div>
         </div>
         <div className="flex flex-col items-center rounded-xl bg-blue-200 p-5 shadow-lg">
-          <p>
-            You will donate the lesser of #max_wei_amt and your account balance
-          </p>
+          <p>You will donate the lesser of (2e+15 CCN, your balance)</p>
           <button
             className="rounded-full bg-blue-700 px-10 py-3 text-white"
             onClick={() => donate()}
@@ -92,10 +96,12 @@ export const MainScreen = ({ aleerumProvider }) => {
       <AddFriendModal
         addFriendModalVisible={addFriendModalVisible}
         setAddFriendModalVisible={setAddFriendModalVisible}
+        account={account}
       />
       <AddBlacklistModal
         addBlacklistModalVisible={addBlacklistModalVisible}
         setAddBlacklistModalVisible={setAddBlacklistModalVisible}
+        account={account}
       />
       <ToastContainer />
     </div>

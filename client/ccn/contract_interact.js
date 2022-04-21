@@ -28,40 +28,49 @@ let myContract = new mcp.Contract(
   "0x0Fe4cbb461130823225D240d25DdaC32c105af7A"
 );
 
-export const donate = async () => {
+export const donate = async (senderAddress) => {
   try {
     return await myContract.methods.makeADonation().call({
-      from: "0x09080153cBe9D2d1273a64CaBb2354deac65C060",
+      from: senderAddress,
     });
   } catch (e) {
     console.log(e);
   }
 };
 
-export const getFriendlist = async () => {
+export const getBalance = async (senderAddress) => {
+  try {
+    const data = await mcp.request.accountBalance(senderAddress);
+    return data.balance / 1000000000000000000;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getFriendlist = async (senderAddress) => {
   try {
     return await myContract.methods.getAddresses().call({
-      from: "0x09080153cBe9D2d1273a64CaBb2354deac65C060",
+      from: senderAddress,
     });
   } catch (e) {
     console.log(e);
   }
 };
 
-export const getBlacklist = async () => {
+export const getBlacklist = async (senderAddress) => {
   try {
     return await myContract.methods.getBlackListAddresses().call({
-      from: "0x09080153cBe9D2d1273a64CaBb2354deac65C060",
+      from: senderAddress,
     });
   } catch (e) {
     console.log(e);
   }
 };
 
-export const addToFriendlist = (address) => {
+export const addToFriendlist = (senderAddress, friendAddress) => {
   try {
-    myContract.methods.requestUserToJoinTheNetwork(address).sendBlock({
-      from: "0x09080153cBe9D2d1273a64CaBb2354deac65C060",
+    myContract.methods.requestUserToJoinTheNetwork(friendAddress).sendBlock({
+      from: senderAddress,
       password: "Eric12345!",
       amount: "0",
       gas_price: "20000000000",
@@ -72,10 +81,10 @@ export const addToFriendlist = (address) => {
   }
 };
 
-export const addToBlacklist = (address) => {
+export const addToBlacklist = (senderAddress, blacklistAddress) => {
   try {
-    myContract.methods.addUserToBlacklist(address).sendBlock({
-      from: "0x09080153cBe9D2d1273a64CaBb2354deac65C060",
+    myContract.methods.addUserToBlacklist(blacklistAddress).sendBlock({
+      from: senderAddress,
       password: "Eric12345!",
       amount: "0",
       gas_price: "20000000000",
