@@ -61,7 +61,7 @@ export const MainScreen = ({ account, isConnected, isLocked }) => {
           <p>You will donate the lesser of (2e+15 CCN, your balance)</p>
           <button
             className="rounded-full bg-blue-700 px-10 py-3 text-white"
-            onClick={() => donate()}
+            onClick={() => donate(account)}
           >
             Donate
           </button>

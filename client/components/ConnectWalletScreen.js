@@ -1,5 +1,4 @@
 import React from "react";
-import { useContext } from "react";
 
 export const ConnectWalletScreen = () => {
   const connectWallet = () => {

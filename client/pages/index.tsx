@@ -6,35 +6,39 @@ import { ConnectWalletScreen } from "../components/ConnectWalletScreen";
 
 const Home: NextPage = () => {
   // check if wallet connected here
-  // window["aleerum"].on("on_account_change", this.handleAccountChange);
   const [account, setAccount] = useState(null);
   const [isConnected, setIsConnected] = useState(null);
   const [isLocked, setIsLocked] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (typeof window.aleereum !== "undefined") {
-      const provider = window["aleereum"];
-      if (provider.isAle) {
-        // initial settings
-        setIsLoading(true);
-        setAccount(provider.account);
-        setIsConnected(provider.isConnected);
-        setIsLocked(provider.islocked);
+    const fetchStuff = () => {
+      if (typeof window.aleereum !== "undefined") {
+        const provider = window["aleereum"];
+        if (provider.isAle) {
+          // initial settings
+          setIsLoading(true);
+          setAccount(provider.account);
+          setIsConnected(provider.isConnected);
+          setIsLocked(provider.islocked);
 
-        // listeners
-        window.aleereum.on("on_islocked_change", (status) => {
-          setIsLocked(status);
-        });
-        window.aleereum.on("on_isConnected_change", (status) => {
-          setIsConnected(status);
-        });
-        window.aleereum.on("on_account_change", (newAccount) => {
-          setAccount(newAccount);
-        });
+          // listeners
+          window.aleereum.on("on_islocked_change", (status) => {
+            setIsLocked(status);
+          });
+          window.aleereum.on("on_isConnected_change", (status) => {
+            setIsConnected(status);
+          });
+          window.aleereum.on("on_account_change", (newAccount) => {
+            setAccount(newAccount);
+          });
+        }
+        setIsLoading(false);
       }
-      setIsLoading(false);
-    }
+    };
+    setTimeout(() => {
+      fetchStuff();
+    }, 250);
   }, [account, isConnected, isLocked]);
 
   if (isLoading) {

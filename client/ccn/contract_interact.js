@@ -30,9 +30,11 @@ let myContract = new mcp.Contract(
 
 export const donate = async (senderAddress) => {
   try {
-    return await myContract.methods.makeADonation().call({
+    const response = await myContract.methods.makeADonation().call({
       from: senderAddress,
     });
+    console.log(response, "donate response");
+    return response;
   } catch (e) {
     console.log(e);
   }
@@ -59,9 +61,10 @@ export const getFriendlist = async (senderAddress) => {
 
 export const getBlacklist = async (senderAddress) => {
   try {
-    return await myContract.methods.getBlackListAddresses().call({
+    const blacklist = await myContract.methods.getBlackListAddresses().call({
       from: senderAddress,
     });
+    return [...new Set(blacklist)];
   } catch (e) {
     console.log(e);
   }
