@@ -48,6 +48,12 @@ export const AddBlacklistModal = ({ ...props }) => {
           disabled={isLoading}
           onClick={async () => {
             setIsLoading(true);
+            if (addressInput === props.account) {
+              toast("Cannot add yourself to blacklist");
+              setIsLoading(false);
+              return; // break early
+            }
+
             const [hasError, errMsg] = await addToBlacklist(
               props.account,
               addressInput,

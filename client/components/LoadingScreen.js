@@ -4,7 +4,7 @@ import bouncyShapes from "../assets/lottie/bouncy_shapes.json";
 
 export const LoadingScreen = () => {
   return (
-    <div className="mt-12 flex justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <Lottie
         animationData={bouncyShapes}
         loop

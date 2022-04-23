@@ -48,6 +48,12 @@ export const AddFriendModal = ({ ...props }) => {
           disabled={isLoading}
           onClick={async () => {
             setIsLoading(true);
+            if (addressInput === props.account) {
+              toast("Cannot add yourself as a friend");
+              setIsLoading(false);
+              return; // break early
+            }
+
             const [hasError, errMsg] = await addToFriendlist(
               props.account,
               addressInput,

@@ -42,15 +42,20 @@ export const MainScreen = ({ account, isConnected, isLocked }) => {
   }
 
   return (
-    <div className="flex min-h-screen flex-col justify-center space-y-10">
-      <h1 className="text-center text-5xl text-blue-700 font-semibold">
+    <div
+      className="flex min-h-screen flex-col justify-center space-y-10"
+      style={{
+        backgroundImage: `url(${require("../assets/light_fluid.png")})`,
+      }}
+    >
+      <h1 className="text-center text-5xl text-white font-semibold">
         Decentralized Wealth Distribution Network
       </h1>
       <div className="flex flex-col items-center justify-evenly space-y-6">
-        <div className="overflow-hidden rounded-lg shadow-lg">
+        <div className="rounded-lg shadow-lg bg-gray-50">
           <div className="px-6 py-4">
             <div className="mb-2 text-xl font-bold">Your Profile</div>
-            <p className="text-base text-gray-700">
+            <p className="text-gray-700">
               Address: <span>{account}</span>
             </p>
             <p className="text-base text-gray-700">
