@@ -48,18 +48,26 @@ export const MainScreen = ({ account, isConnected, isLocked }) => {
         backgroundImage: `url(${require("../assets/light_fluid.png")})`,
       }}
     >
-      <h1 className="text-center text-5xl text-white font-semibold">
-        Decentralized Wealth Distribution Network
+      <h1 className="flex flex-col text-center text-8xl text-blue-400 font-semibold">
+        DWDN{" "}
+        <span className="text-xl">
+          {" "}
+          Decentralized Wealth Distribution Network
+        </span>
       </h1>
       <div className="flex flex-col items-center justify-evenly space-y-6">
         <div className="rounded-lg shadow-lg bg-gray-50">
-          <div className="px-6 py-4">
-            <div className="mb-2 text-xl font-bold">Your Profile</div>
-            <p className="text-gray-700">
-              Address: <span>{account}</span>
+          <div class="block p-6 max-w-3xl bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              Your Profile
+            </h5>
+            <p class="font-bold text-gray-700 dark:text-gray-400">
+              Address:{" "}
+              <span className="font-normal text-gray-200">{account}</span>
             </p>
-            <p className="text-base text-gray-700">
-              Balance: <span>{balance} CCN</span>
+            <p class="font-bold text-gray-700 dark:text-gray-400">
+              Balance:{" "}
+              <span className="font-normal text-gray-200">{balance} CCN</span>
             </p>
           </div>
         </div>
@@ -74,29 +82,69 @@ export const MainScreen = ({ account, isConnected, isLocked }) => {
         </div>
       </div>
       <div className="flex flex-row justify-evenly">
-        <div className="rounded-xl bg-gray-300 p-5 shadow-lg">
-          <div className="flex flex-row">
-            <p>Your friends ({friendlist.length}):</p>
+        <div class="p-4 max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <div class="flex justify-between items-center mb-4">
+            <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
+              Your Friendlist ({friendlist.length})
+            </h5>
             <button
-              className="flex h-5 w-5 items-center justify-center rounded-full bg-green-400 text-center"
+              class="text-sm w-6 h-6 font-medium bg-blue-300 rounded-full text-blue-600 dark:text-blue-500 hover:bg-blue-400 hover:ring-1 hover:ring-blue-500"
               onClick={() => setAddFriendModalVisible(true)}
             >
               +
             </button>
           </div>
-          {friendlist && friendlist.map((item, idx) => <p key={idx}>{item}</p>)}
+          <div class="flow-root">
+            <ul
+              role="list"
+              class="divide-y divide-gray-200 dark:divide-gray-700"
+            >
+              {friendlist &&
+                friendlist.map((item, idx) => (
+                  <li key={idx} class="py-3 sm:py-4">
+                    <div class="flex items-center space-x-4">
+                      <div class="flex-1 min-w-0">
+                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                          {item}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+            </ul>
+          </div>
         </div>
-        <div className="rounded-xl bg-gray-300 p-5 shadow-lg">
-          <div className="flex flex-row">
-            <p>Addresses you've blacklisted ({blacklist.length}):</p>
+        <div class="p-4 max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <div class="flex justify-between items-center mb-4">
+            <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
+              Your Blacklist ({blacklist.length})
+            </h5>
             <button
-              className="flex h-5 w-5 items-center justify-center rounded-full bg-green-400 text-center"
+              class="text-sm w-6 h-6 font-medium bg-blue-300 rounded-full text-blue-600 dark:text-blue-500 hover:bg-blue-400 hover:ring-1 hover:ring-blue-500"
               onClick={() => setAddBlacklistModalVisible(true)}
             >
               +
             </button>
           </div>
-          {blacklist && blacklist.map((item, idx) => <p key={idx}>{item}</p>)}
+          <div class="flow-root">
+            <ul
+              role="list"
+              class="divide-y divide-gray-200 dark:divide-gray-700"
+            >
+              {blacklist &&
+                blacklist.map((item, idx) => (
+                  <li key={idx} class="py-3 sm:py-4">
+                    <div class="flex items-center space-x-4">
+                      <div class="flex-1 min-w-0">
+                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                          {item}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+            </ul>
+          </div>
         </div>
       </div>
       <AddFriendModal
