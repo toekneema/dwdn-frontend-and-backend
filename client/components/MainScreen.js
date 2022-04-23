@@ -98,12 +98,14 @@ export const MainScreen = ({ account, isConnected, isLocked }) => {
         addFriendModalVisible={addFriendModalVisible}
         setAddFriendModalVisible={setAddFriendModalVisible}
         account={account}
+        friendlist={friendlist}
         setFriendlist={setFriendlist}
       />
       <AddBlacklistModal
         addBlacklistModalVisible={addBlacklistModalVisible}
         setAddBlacklistModalVisible={setAddBlacklistModalVisible}
         account={account}
+        blacklist={blacklist}
         setBlacklist={setBlacklist}
       />
       <ToastContainer />

@@ -56,8 +56,18 @@ export const AddFriendModal = ({ ...props }) => {
             if (hasError) {
               toast(errMsg);
             } else {
-              props.setFriendlist((prevState) => [...prevState, addressInput]);
-              props.setAddFriendModalVisible(false);
+              if (props.friendlist.includes(addressInput)) {
+                toast("Already in friendlist");
+              } else if (props.friendlist.length == 4) {
+                toast("Max friendlist size reached");
+              } else {
+                // success case
+                props.setFriendlist((prevState) => [
+                  ...prevState,
+                  addressInput,
+                ]);
+                props.setAddFriendModalVisible(false);
+              }
             }
             setIsLoading(false);
           }}

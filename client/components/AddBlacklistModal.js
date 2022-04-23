@@ -56,8 +56,14 @@ export const AddBlacklistModal = ({ ...props }) => {
             if (hasError) {
               toast(errMsg);
             } else {
-              props.setBlacklist((prevState) => [...prevState, addressInput]);
-              props.setAddBlacklistModalVisible(false);
+              if (props.blacklist.includes(addressInput)) {
+                toast("Already in blacklist");
+              } else if (props.blacklist.length == 4) {
+                toast("Max blacklist size reached");
+              } else {
+                props.setBlacklist((prevState) => [...prevState, addressInput]);
+                props.setAddBlacklistModalVisible(false);
+              }
             }
             setIsLoading(false);
           }}
