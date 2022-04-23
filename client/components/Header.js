@@ -7,7 +7,7 @@ export const Header = () => {
         <div class="flex items-center">
           <a href="/" className="flex flex-row">
             <img src="/ccn.png" class="mr-3 h-6 sm:h-9" />
-            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-blue-50">
               Decentralized Wealth Distribution Network
             </span>
           </a>

@@ -87,7 +87,9 @@ export const addToFriendlist = async (
     console.log("is this hitting?");
     return [false, ""];
   } catch (e) {
-    console.log("addToFriendlist error:", e.msg);
+    if (e.msg === undefined) {
+      return [true, "Invalid address"];
+    }
     return [true, e.msg];
   }
 };
@@ -108,7 +110,9 @@ export const addToBlacklist = async (
     });
     return [false, ""];
   } catch (e) {
-    console.log("addToBlacklist error:", e.msg);
+    if (e.msg === undefined) {
+      return [true, "Invalid address"];
+    }
     return [true, e.msg];
   }
 };
