@@ -65,7 +65,7 @@ export const MainScreen = ({ account, isConnected, isLocked }) => {
           <div className="flex flex-col items-center rounded-xl bg-blue-200 p-5 shadow-lg">
             <p>You will donate the lesser of (2e+15 CCN, your balance)</p>
             <button
-              className="rounded-full bg-blue-700 px-10 py-3 text-white"
+              className="rounded-full bg-blue-700 px-10 py-3 text-white hover:ring-2 hover:bg-blue-800"
               onClick={() => donate(account)}
             >
               Donate

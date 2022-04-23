@@ -16,6 +16,7 @@ export const AddBlacklistModal = ({ ...props }) => {
       // style={styles.modal}
       isOpen={props.addBlacklistModalVisible}
       ariaHideApp={false}
+      style={styles.modal}
     >
       <div className="p-4 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
         <div className="space-y-6">

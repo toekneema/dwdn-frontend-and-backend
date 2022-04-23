@@ -12,7 +12,11 @@ export const AddFriendModal = ({ ...props }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <Modal isOpen={props.addFriendModalVisible} ariaHideApp={false}>
+    <Modal
+      isOpen={props.addFriendModalVisible}
+      ariaHideApp={false}
+      style={styles.modal}
+    >
       <div className="p-4 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
         <div className="space-y-6">
           <h5 className="text-2xl font-medium text-gray-900 dark:text-white">
