@@ -8,7 +8,8 @@ import {
   getFriendlist,
   getBalance,
 } from "../ccn/contract_interact";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const MainScreen = ({ account, isConnected, isLocked }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,14 +17,14 @@ export const MainScreen = ({ account, isConnected, isLocked }) => {
   const [addBlacklistModalVisible, setAddBlacklistModalVisible] =
     useState(false);
   const [balance, setBalance] = useState(null);
-  const [friendlist, setFriendList] = useState([]);
+  const [friendlist, setFriendlist] = useState([]);
   const [blacklist, setBlacklist] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
     const getInitialData = async () => {
       setBalance(await getBalance(account));
-      setFriendList(await getFriendlist(account));
+      setFriendlist(await getFriendlist(account));
       setBlacklist(await getBlacklist(account));
     };
     getInitialData().then(() => {
@@ -31,10 +32,10 @@ export const MainScreen = ({ account, isConnected, isLocked }) => {
     });
 
     return () => {
-      setFriendList([]);
+      setFriendlist([]);
       setBlacklist([]);
     };
-  }, [account]);
+  }, [account, balance]);
 
   if (isLoading) {
     return <LoadingScreen />;
@@ -97,11 +98,13 @@ export const MainScreen = ({ account, isConnected, isLocked }) => {
         addFriendModalVisible={addFriendModalVisible}
         setAddFriendModalVisible={setAddFriendModalVisible}
         account={account}
+        setFriendlist={setFriendlist}
       />
       <AddBlacklistModal
         addBlacklistModalVisible={addBlacklistModalVisible}
         setAddBlacklistModalVisible={setAddBlacklistModalVisible}
         account={account}
+        setBlacklist={setBlacklist}
       />
       <ToastContainer />
     </div>
