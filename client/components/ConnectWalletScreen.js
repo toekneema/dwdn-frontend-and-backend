@@ -6,13 +6,13 @@ export const ConnectWalletScreen = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="flex min-h-screen flex-col items-center justify-center py-2 bg-slate-900">
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
+        <h1 className="text-6xl font-bold text-white">
           Welcome to <span className="text-blue-600">DWDN!</span>
         </h1>
 
-        <p className="mt-3 text-2xl">
+        <p className="mt-3 text-2xl text-gray-200">
           Decentralized Wealth Distribution Network
         </p>
 
