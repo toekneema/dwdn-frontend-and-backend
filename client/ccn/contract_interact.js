@@ -24,7 +24,8 @@ mcp.Contract.setProvider("http://18.182.45.18:8765/");
 let myContract = new mcp.Contract(
   DWDNAbi.abi,
   // "0x0Fe4cbb461130823225D240d25DdaC32c105af7A"
-  "0x89a7c30e168B04e2874ee4dB2E9dD85Dfe24033D" // new 4/24/22
+  // "0x89a7c30e168B04e2874ee4dB2E9dD85Dfe24033D" // new 4/24/22
+  "0x020E1dd92604EAE5787FC1afE649DbD08D2dBa92" // new 4/26/22
 );
 
 export const getBalance = async (senderAddress) => {

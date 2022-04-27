@@ -22,20 +22,19 @@ contract DWDN {
 
     mapping(address => Network) public _network;
 
-    event Print(uint256 i);
     event Print(string s);
+    event Print(uint256 i, string s);
+    event Print(string s, string msg);
     event Print(string s, uint256 i);
 
     constructor() {
         _owner = msg.sender;
         _maxConnections = 4;
-        _maxWeiDistribution = (10**15) * 2;
+        _maxWeiDistribution = (10**5) * 2;
         _minWeiDistribution = 0;
         _maxMemoryArray = 100;
         _lock = false;
         _gasTransfer = 3000;
-
-        //emit Print(_maxWeiDistribution);
 
         _network[_owner]._connectedUsersByAddress[_owner] = 1;
         _network[_owner]._sizeOfConnectedUsersByAddress++;
@@ -175,6 +174,9 @@ contract DWDN {
                 );
                 _remainingAmount = _remainingAmount - _donationAmount;
 
+                emit Print(_donationAmount, "_donationAmount");
+                emit Print(_remainingAmount, "_remainingAmount");
+
                 (bool success, ) = _child.call{
                     value: _donationAmount,
                     gas: _gasTransfer
@@ -182,8 +184,10 @@ contract DWDN {
                 require(success, "Transfer failed");
 
                 _maxChildLocation++;
+                emit Print("does it get here past _maxChildLocation?");
 
                 if (_maxChildLocation >= _maxMemoryArray) {
+                    emit Print("inside _maxChildLocation >= _maxMemoryArray");
                     break;
                 }
 
@@ -200,6 +204,8 @@ contract DWDN {
             }("");
             require(success, "Transfer failed");
         }
+
+        emit Print("does it get here?? right before _lock = false");
 
         _lock = false;
     }

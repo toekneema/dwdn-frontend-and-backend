@@ -48,15 +48,15 @@ export const MainScreen = ({ account, isConnected, isLocked }) => {
       <div className="flex min-h-screen flex-col justify-center space-y-10 bg-slate-900">
         <div className="flex flex-col items-center justify-evenly space-y-6">
           <div className="rounded-lg shadow-lg bg-gray-50">
-            <div class="block p-6 max-w-3xl bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <div className="block p-6 max-w-3xl bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Your Wallet
               </h5>
-              <p class="font-bold text-gray-700 dark:text-gray-400">
+              <p className="font-bold text-gray-700 dark:text-gray-400">
                 Address:{" "}
                 <span className="font-normal text-gray-200">{account}</span>
               </p>
-              <p class="font-bold text-gray-700 dark:text-gray-400">
+              <p className="font-bold text-gray-700 dark:text-gray-400">
                 Balance:{" "}
                 <span className="font-normal text-gray-200">{balance} CCN</span>
               </p>
@@ -73,29 +73,29 @@ export const MainScreen = ({ account, isConnected, isLocked }) => {
           </div>
         </div>
         <div className="flex flex-row justify-evenly">
-          <div class="p-4 max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex justify-between items-center mb-4">
-              <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
+          <div className="p-4 max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div className="flex justify-between items-center mb-4">
+              <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
                 Your Friendlist ({friendlist.length})
               </h5>
               <button
-                class="text-sm w-6 h-6 font-medium bg-blue-300 rounded-full text-blue-600 dark:text-blue-500 hover:bg-blue-400 hover:ring-1 hover:ring-blue-500"
+                className="text-sm w-6 h-6 font-medium bg-blue-300 rounded-full text-blue-600 dark:text-blue-500 hover:bg-blue-400 hover:ring-1 hover:ring-blue-500"
                 onClick={() => setAddFriendModalVisible(true)}
               >
                 +
               </button>
             </div>
-            <div class="flow-root">
+            <div className="flow-root">
               <ul
                 role="list"
-                class="divide-y divide-gray-200 dark:divide-gray-700"
+                className="divide-y divide-gray-200 dark:divide-gray-700"
               >
                 {friendlist &&
                   friendlist.map((item, idx) => (
-                    <li key={idx} class="py-3 sm:py-4">
-                      <div class="flex items-center space-x-4">
-                        <div class="flex-1 min-w-0">
-                          <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                    <li key={idx} className="py-3 sm:py-4">
+                      <div className="flex items-center space-x-4">
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm text-gray-500 truncate dark:text-gray-400">
                             {item}
                           </p>
                         </div>
@@ -105,29 +105,29 @@ export const MainScreen = ({ account, isConnected, isLocked }) => {
               </ul>
             </div>
           </div>
-          <div class="p-4 max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex justify-between items-center mb-4">
-              <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
+          <div className="p-4 max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div className="flex justify-between items-center mb-4">
+              <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
                 Your Blacklist ({blacklist.length})
               </h5>
               <button
-                class="text-sm w-6 h-6 font-medium bg-blue-300 rounded-full text-blue-600 dark:text-blue-500 hover:bg-blue-400 hover:ring-1 hover:ring-blue-500"
+                className="text-sm w-6 h-6 font-medium bg-blue-300 rounded-full text-blue-600 dark:text-blue-500 hover:bg-blue-400 hover:ring-1 hover:ring-blue-500"
                 onClick={() => setAddBlacklistModalVisible(true)}
               >
                 +
               </button>
             </div>
-            <div class="flow-root">
+            <div className="flow-root">
               <ul
                 role="list"
-                class="divide-y divide-gray-200 dark:divide-gray-700"
+                className="divide-y divide-gray-200 dark:divide-gray-700"
               >
                 {blacklist &&
                   blacklist.map((item, idx) => (
-                    <li key={idx} class="py-3 sm:py-4">
-                      <div class="flex items-center space-x-4">
-                        <div class="flex-1 min-w-0">
-                          <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                    <li key={idx} className="py-3 sm:py-4">
+                      <div className="flex items-center space-x-4">
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm text-gray-500 truncate dark:text-gray-400">
                             {item}
                           </p>
                         </div>

@@ -41,9 +41,14 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
+    // development: {
+    //  host: "127.0.0.1",     // Localhost (default: none)
+    //  port: 8545,            // Standard Ethereum port (default: none)
+    //  network_id: "*",       // Any network (default: none)
+    // },
     development: {
       host: "127.0.0.1", // Localhost (default: none)
-      port: 8545, // Standard Ethereum port (default: none)
+      port: 8765, // Standard Huygen port (default: none)
       network_id: "*", // Any network (default: none)
     },
     ganache: {
@@ -58,14 +63,6 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true,
     },
-    // huygens: {
-    //   provider: () =>
-    //     new HDWalletProvider([privateKey], `http://18.182.45.18:8765/`),
-    //   network_id: 828,
-    //   confirmations: 10,
-    //   timeoutBlocks: 200,
-    //   skipDryRun: true,
-    // },
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
