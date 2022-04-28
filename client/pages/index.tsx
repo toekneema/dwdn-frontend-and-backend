@@ -38,7 +38,7 @@ const Home: NextPage = () => {
     };
     setTimeout(() => {
       fetchStuff();
-    }, 20 /* ms */);
+    }, 40 /* ms */);
   }, [account, isConnected, isLocked]);
 
   if (isLoading) {

@@ -62,14 +62,19 @@ export const MainScreen = ({ account, isConnected, isLocked }) => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col items-center rounded-xl bg-blue-200 p-5 shadow-lg">
-            <p>You will donate the lesser of (2e+15 CCN, your balance)</p>
-            <button
-              className="rounded-full bg-blue-700 px-10 py-3 text-white hover:ring-2 hover:bg-blue-800"
-              onClick={() => donate(account)}
-            >
-              Donate
-            </button>
+
+          <div className="bg-blue-700 md:w-60 w-full rounded-lg p-4 mb-6 shadow sm:inline-block">
+            <p className="mt-1 max-w-xs font-semibold text-white text-center">
+              You will donate the lesser of (2e+15 CCN, your balance)
+            </p>
+            <div className="flex justify-center mt-4">
+              <button
+                className="rounded-full bg-blue-400 text-white shadow-xl border-2 border-blue-500 px-10 py-3 hover:ring-2 hover:bg-blue-900"
+                onClick={() => donate(account)}
+              >
+                Donate
+              </button>
+            </div>
           </div>
         </div>
         <div className="flex flex-row justify-evenly">
