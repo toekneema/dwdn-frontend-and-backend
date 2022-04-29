@@ -7,8 +7,8 @@ const Team: NextPage = () => {
   return (
     <>
       <Header />
-      <div className="flex min-h-screen flex-col justify-center items-center space-y-10 bg-slate-900">
-        <div className="bg-gray-800 w-full flex justify-center items-center flex-col p-8">
+      <div className="flex bg-gray-800 min-h-screen flex-col items-center space-y-10 bg-slate-900">
+        <div className="w-full flex items-center flex-col p-8">
           <p className="text-center text-3xl font-bold text-gray-800 dark:text-white mb-20">
             Meet the team!
           </p>

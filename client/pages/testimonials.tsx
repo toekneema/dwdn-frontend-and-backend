@@ -10,6 +10,9 @@ const Testimonials: NextPage = () => {
       <div className="flex min-h-screen flex-col justify-center bg-slate-900">
         <div className="bg-white dark:bg-gray-800 p-8">
           {/* start of tailwind stuff*/}
+          <p className="text-center text-3xl font-bold text-gray-800 dark:text-white mb-20">
+            Testimonials
+          </p>
           <div className="space-y-8">
             <div className="bg-white dark:bg-blue-300 rounded-3xl w-1/2 mx-auto p-8">
               <p className="text-gray-600 dark:text-gray-700 w-full md:w-2/3 m-auto text-center text-lg md:text-3xl">
