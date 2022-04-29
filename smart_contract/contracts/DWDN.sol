@@ -23,14 +23,13 @@ contract DWDN {
     mapping(address => Network) public _network;
 
     event Print(string s);
+    event Print(bool b, string s);
     event Print(uint256 i, string s);
-    event Print(string s, string msg);
-    event Print(string s, uint256 i);
 
     constructor() {
         _owner = msg.sender;
         _maxConnections = 4;
-        _maxWeiDistribution = (10**5) * 2;
+        _maxWeiDistribution = 10000000000000000; // .01 ETH, which equals .01 CCN
         _minWeiDistribution = 0;
         _maxMemoryArray = 100;
         _lock = false;
@@ -137,6 +136,8 @@ contract DWDN {
         _lock = true;
 
         uint256 _remainingAmount = msg.value;
+        emit Print(_remainingAmount, "_remainingAmount");
+
         uint256 _donationAmount;
         uint256 _currentChildLocation = 0;
         uint256 _maxChildLocation = 0;
@@ -159,12 +160,15 @@ contract DWDN {
                 address _child = _network[_parent]._addresses[i];
 
                 if (_network[_parent]._blackList[_child] == 1) {
+                    emit Print("continued line 163");
                     continue;
                 }
                 if (arrayHasElement(_childs, _child)) {
+                    emit Print("continued line 166");
                     continue;
                 }
                 if (_remainingAmount < _minWeiDistribution) {
+                    emit Print("broke line 169");
                     break;
                 }
 
@@ -175,12 +179,13 @@ contract DWDN {
                 _remainingAmount = _remainingAmount - _donationAmount;
 
                 emit Print(_donationAmount, "_donationAmount");
-                emit Print(_remainingAmount, "_remainingAmount");
+                // emit Print(_remainingAmount, "_remainingAmount");
 
                 (bool success, ) = _child.call{
                     value: _donationAmount,
                     gas: _gasTransfer
                 }("");
+                emit Print(success, "success at line 180");
                 require(success, "Transfer failed");
 
                 _maxChildLocation++;
@@ -202,6 +207,7 @@ contract DWDN {
                 value: _remainingAmount,
                 gas: _gasTransfer
             }("");
+            emit Print(success, "success at line 203");
             require(success, "Transfer failed");
         }
 

@@ -20,11 +20,10 @@ const About: NextPage = () => {
                 can make donations to all other users connected to him/her. The
                 central idea here is that some could make a donation of part of
                 their wealth to other users that have some connection to him/her
-                in order to reduce the income inequality around the world
-                ([SZ14], [BBS16]). The decentralized blockchain technology would
-                help us not only to transfer funds real time but also
-                guaranteeing that there is no corruption risk when making a
-                donation to other users.
+                in order to reduce the income inequality around the world. The
+                decentralized blockchain technology would help us not only to
+                transfer funds real time but also guaranteeing that there is no
+                corruption risk when making a donation to other users.
               </p>
             </div>
             <div className="">
