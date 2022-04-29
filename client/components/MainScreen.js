@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AddFriendModal } from "./AddFriendModal";
 import { AddBlacklistModal } from "./AddBlacklistModal";
+import { DonateModal } from "./DonateModal";
 import { LoadingScreen } from "./LoadingScreen";
 import { Header } from "./Header";
 import {
@@ -9,11 +10,13 @@ import {
   getFriendlist,
   getBalance,
 } from "../ccn/contract_interact";
+import { donateV2 } from "../ccn/eth_contract_interact";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const MainScreen = ({ account, isConnected, isLocked }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [donateModalVisible, setDonateModalVisible] = useState(false);
   const [addFriendModalVisible, setAddFriendModalVisible] = useState(false);
   const [addBlacklistModalVisible, setAddBlacklistModalVisible] =
     useState(false);
@@ -63,18 +66,13 @@ export const MainScreen = ({ account, isConnected, isLocked }) => {
             </div>
           </div>
 
-          <div className="bg-blue-700 md:w-60 w-full rounded-lg p-4 mb-6 shadow sm:inline-block">
-            <p className="mt-1 max-w-xs font-semibold text-white text-center">
-              You will donate the lesser of (2e+15 CCN, your balance)
-            </p>
-            <div className="flex justify-center mt-4">
-              <button
-                className="rounded-full bg-blue-400 text-white shadow-xl border-2 border-blue-500 px-10 py-3 hover:ring-2 hover:bg-blue-900"
-                onClick={() => donate(account)}
-              >
-                Donate
-              </button>
-            </div>
+          <div className="flex justify-center my-20">
+            <button
+              className="rounded-full bg-blue-400 text-white text-2xl shadow-xl px-10 py-3 hover:ring-2 hover:bg-blue-900"
+              onClick={() => setDonateModalVisible(true)}
+            >
+              Donate
+            </button>
           </div>
         </div>
         <div className="flex flex-row justify-evenly">
@@ -143,6 +141,11 @@ export const MainScreen = ({ account, isConnected, isLocked }) => {
             </div>
           </div>
         </div>
+        <DonateModal
+          donateModalVisible={donateModalVisible}
+          setDonateModalVisible={setDonateModalVisible}
+          account={account}
+        />
         <AddFriendModal
           addFriendModalVisible={addFriendModalVisible}
           setAddFriendModalVisible={setAddFriendModalVisible}
